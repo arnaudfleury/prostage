@@ -13,9 +13,7 @@ class ProstageController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('prostage/index.html.twig', [
-            'controller_name' => 'Bienvenue sur la page d\'accueil de Prostages',
-        ]);
+        return $this->render('prostage/index.html.twig');
     }
 
     /**
@@ -23,9 +21,7 @@ class ProstageController extends AbstractController
      */
     public function entreprises(): Response
     {
-        return $this->render('prostage/index.html.twig', [
-            'controller_name' => 'Cette page affichera la liste des entreprises proposant un stage',
-        ]);
+        return $this->render('prostage/entreprises.html.twig');
     }
 
     /**
@@ -33,9 +29,7 @@ class ProstageController extends AbstractController
      */
     public function formations(): Response
     {
-        return $this->render('prostage/index.html.twig', [
-            'controller_name' => 'Cette page affichera la liste des formations de l\'IUT',
-        ]);
+        return $this->render('prostage/formations.html.twig');
     }
 
     /**
@@ -43,8 +37,6 @@ class ProstageController extends AbstractController
      */
     public function stages($id): Response
     {
-        return $this->render('prostage/index.html.twig', [
-            'controller_name' => 'Cette page affichera le descriptif du stage ayant pour identifiant : '.$id,
-        ]);
+        return $this->render('prostage/stages.html.twig');
     }
 }
