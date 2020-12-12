@@ -1,6 +1,6 @@
-<title>Page d'accueil</title>
-<body>
+{% extends 'base.html.twig' %}
 
+{% block body %}
 <h1> Bienvenue sur la page d'accueil de Prostage ! 😄</h1>
 
 <p>
@@ -17,5 +17,4 @@
     <a href="{{path('prostage_stage',{id:72})}}">Stage numéro 72</a>
   </li>
 </ul>
-
-</body>
+{% endblock %}
