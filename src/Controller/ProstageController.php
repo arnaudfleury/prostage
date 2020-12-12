@@ -33,9 +33,17 @@ class ProstageController extends AbstractController
     }
 
     /**
-     * @Route("/stages/{id}", name="prostage_stages")
+     * @Route("/stage/{id}", name="prostage_stage")
      */
-    public function stages($id): Response
+    public function stage($id): Response
+    {
+        return $this->render('prostage/stage.html.twig',['idStage' => $id]);
+    }
+
+    /**
+     * @Route("/stages", name="prostage_stages")
+     */
+    public function stages(): Response
     {
         return $this->render('prostage/stages.html.twig');
     }
