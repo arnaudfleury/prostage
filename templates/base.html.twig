@@ -6,7 +6,11 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% block menu %}{% endblock %}
+        <h1>------------------- MENU -------------------</h1>
         {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
+        <h1>------------------ FOOTER -----------------</h1>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
