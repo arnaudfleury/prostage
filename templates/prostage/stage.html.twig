@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-<h1> Bienvenue sur les détails du stage {{idStage}} ! 😄</h1>
+{% block titrePage %}
+Bienvenue sur les détails du stage {{idStage}} ! 😄
+{% endblock %}
 
+{% block contenuPage %}
 <p>
   Futurs détails sur le stage numéro {{idStage}}
 </p>

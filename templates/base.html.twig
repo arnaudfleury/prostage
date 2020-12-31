@@ -18,21 +18,10 @@
             <div class="col-md-12">
               <ul class="nav">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Home</a>
+                  <a class="nav-link" href="http://127.0.0.1:8000/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Profile</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Messages</a>
-                </li>
-                <li class="nav-item dropdown ml-md-auto">
-                   <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown link</a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                     <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
-                     <div class="dropdown-divider">
-                     </div> <a class="dropdown-item" href="#">Separated link</a>
-                  </div>
+                  <a class="nav-link" href="http://127.0.0.1:8000/stages">Liste des stages</a>
                 </li>
               </ul>
             </div>
@@ -65,7 +54,7 @@
         {% endblock %}
 
         {% block javascripts %}
-          <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
+          <script src="{{asset('/js/bootstrap.bundle.js')}}"></script>
           <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
           <script src="{{asset('/js/bootstrap.min.js')}}"></script>
         {% endblock %}
