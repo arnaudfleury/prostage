@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block titrePage %}
-Bienvenue sur les détails du stage {{idStage}} ! 😄
+Stage n°{{stage.id}} - {{stage.titre}}
 {% endblock %}
 
 {% block contenuPage %}
-<p>
-  Futurs détails sur le stage numéro {{idStage}}
-</p>
+<ul class="list-group">
+<li class="list-group-item"><strong>Entreprise :</strong> {{stage.entreprise.nom}}</li>
+  <li class="list-group-item"><strong>Activité :</strong> {{stage.activite}}</li>
+  <li class="list-group-item"><strong>Descriptif :</strong> {{stage.description}}</li>
+  <li class="list-group-item"><strong>Formation :</strong>
+    {% for formation in stage.formations %}
+      {{formation.sigle}}
+    {% endfor %}</li>
+  <li class="list-group-item"><strong>Adresse :</strong> {{stage.lieu}}</li>
+  <li class="list-group-item"><strong>Site web :</strong> <a href="{{stage.entreprise.siteWeb}}">{{stage.entreprise.nom}}</a></li>
+  <li class="list-group-item"><strong>Mail :</strong> {{stage.mail}}</li>
+  <li class="list-group-item"><strong>Date d'ajout :</strong> {{stage.date | date("d/m/Y")}}</li>
+
+
+</ul>
 {% endblock %}

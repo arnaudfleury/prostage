@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
             $stage->setDate($faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now', $timezone = 'Europe/Paris'));
             $stage->setActivite($faker->word());
             $stage->setLieu($entreprise->getAdresse());
-            $stage->setDescription($faker->realText($maxNbChars = $faker->numberBetween($min=300,$max=3000), $indexSize = 2));
+            $stage->setDescription($faker->realText($maxNbChars = $faker->numberBetween($min=300,$max=800), $indexSize = 2));
             $stage->setArchive(false);
             $stage->setMail($faker->email());
             $numFormation = $faker->numberBetween($min = 0, $max = 2);

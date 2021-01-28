@@ -5,7 +5,33 @@ Bienvenue sur la liste des stages ! 😄
 {% endblock %}
 
 {% block contenuPage %}
-<p>
-  Future liste des stages
-</p>
+{% set debutNouvelleLigne = true %}
+
+    {% for stageCourant in stages %}
+
+    {# Si  on est en début de ligne, on crée un nouveau composant card-deck#}
+    {% if debutNouvelleLigne == true %}
+      <div class="card-deck">
+      {% set debutNouvelleLigne = false %}
+    {% endif %}
+
+    {#Afficher une carte pour le stage courant #}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{stageCourant.titre}}</h5>
+        <p class="card-text">Entreprise : {{stageCourant.entreprise.nom}}</p>
+        <p class="card-text">Formation :
+          {% for formation in stageCourant.formations %}
+             {{formation.sigle}}
+          {% endfor %}
+        </p>
+        <p class="card-text">Lieu : {{stageCourant.lieu}}</p>
+        <p class="card-text">
+          <small class="text-muted">Date d'ajout : {{stageCourant.date | date("d/m/Y")}}</small>
+        </p>
+        <a href="{{path('prostage_stage',{id:stageCourant.id})}}">Plus ...</a>
+      </div>
+    </div>
+
+    {% endfor %}
 {% endblock %}
