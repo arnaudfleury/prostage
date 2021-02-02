@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
+use App\Entity\Entreprise;
 
 class ProstageController extends AbstractController
 {
@@ -22,7 +23,28 @@ class ProstageController extends AbstractController
      */
     public function entreprises(): Response
     {
-        return $this->render('prostage/entreprises.html.twig');
+        // Récupérer le repository de l'entité Ressource
+        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+
+        // Récupérer les ressources enregistrées en BD
+        $entreprises = $repositoryEntreprise->findAll();
+
+        return $this->render('prostage/entreprises.html.twig',['entreprises'=>$entreprises]);
+    }
+
+    /**
+     * @Route("/entreprise/{id}", name="prostage_entreprise")
+     */
+    public function entreprise($id): Response
+    {
+        // Récupérer le repository de l'entité Ressource
+        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+
+        // Récupérer les ressources enregistrées en BD
+        $entreprise = $repositoryEntreprise->find($id);
+
+        // Envoyer les ressources récupérées à la vue chargée de les afficher
+        return $this->render('prostage/entreprise.html.twig',['entreprise' => $entreprise]);
     }
 
     /**

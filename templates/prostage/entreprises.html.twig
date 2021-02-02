@@ -1,12 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% endblock %}
 {% block titrePage %}
-Bienvenue sur la liste des stages ! 😄
+Bienvenue sur la liste des entreprises ! 😄
 {% endblock %}
 
 {% block contenuPage %}
-<p>
-  Future liste des stages triée par entreprises
-</p>
+{% set debutNouvelleLigne = true %}
+
+    {% for entrepriseCourante in entreprises %}
+
+    {# Si  on est en début de ligne, on crée un nouveau composant card-deck #}
+    {% if debutNouvelleLigne == true %}
+      <div class="card-deck">
+      {% set debutNouvelleLigne = false %}
+    {% endif %}
+
+    {# Afficher une carte pour l'entreprise courante #}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{entrepriseCourante.nom}}</h5>
+        <p class="card-text">Adresse : {{entrepriseCourante.adresse}}</p>
+        <p class="card-text">Site web : {{entrepriseCourante.siteWeb}}</p>
+        {% set nbStagesActifs = 0 %}
+        {% for stage in entrepriseCourante.stages %}
+          {% if stage.archive == false %}
+            {% set nbStagesActifs = nbStagesActifs + 1 %}
+          {% endif %}
+        {% endfor %}
+        <p class="card-text">Stages actifs : {{nbStagesActifs}}</p>
+        <a href="{{path('prostage_entreprise',{id:entrepriseCourante.id})}}">Plus ...</a>
+      </div>
+    </div>
+
+    {% endfor %}
 {% endblock %}

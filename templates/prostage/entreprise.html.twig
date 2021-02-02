@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}
+Entreprise : {{entreprise.nom}}
+{% endblock %}
+
+{% block contenuPage %}
+<strong>Adresse :</strong> {{entreprise.adresse}}<br>
+<strong>Site web :</strong> {{entreprise.siteWeb}}<br>
+
+
+{% for stage in entreprise.stages %}
+  <ul class="list-group">
+    <li class="list-group-item"><strong> {{stage.titre}} </strong></li>
+    <li class="list-group-item"><strong>Formation :</strong>
+    {% for formation in stage.formations %}
+       {{formation.sigle}}
+    {% endfor %}</li>
+    <li class="list-group-item"><strong>Lieu :</strong> {{stage.lieu}}</li>
+    <li class="list-group-item"><strong>Date d'ajout :</strong> {{stage.date | date("d/m/Y")}}</li>
+    <li class="list-group-item"><a href="{{path('prostage_stage',{id:stage.id})}}">Plus ...</a></li>
+  </ul>
+  <br>
+{% endfor %}
+
+
+{% endblock %}
