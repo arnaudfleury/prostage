@@ -52,11 +52,26 @@ class AppFixtures extends Fixture
             $stage->setActivite($faker->word());
             $stage->setLieu($entreprise->getAdresse());
             $stage->setDescription($faker->realText($maxNbChars = $faker->numberBetween($min=300,$max=800), $indexSize = 2));
-            $stage->setArchive(false);
+            if($faker->numberBetween($min = 1, $max = 4) == 1){$stage->setArchive(true);}
+            else{$stage->setArchive(false);}
             $stage->setMail($faker->email());
             $numFormation = $faker->numberBetween($min = 0, $max = 2);
-            $stage->addFormation($tabFormations[$numFormation]);
-            $tabFormations[$numFormation]->addStage($stage);
+            $nbFormation = 1 + $faker->numberBetween($min = 0, $max = 1);
+            for($j=0; $j < $nbFormation; $j++)
+            {
+              if($numFormation == 2)
+              {
+                $stage->addFormation($tabFormations[$numFormation]);
+                $tabFormations[$numFormation]->addStage($stage);
+                $numFormation -= $faker->numberBetween($min = 1, $max = 2);
+              }
+              else
+              {
+                $stage->addFormation($tabFormations[$numFormation]);
+                $tabFormations[$numFormation]->addStage($stage);
+                $numFormation++;
+              }
+            }
             $stage->setEntreprise($entreprise);
             $entreprise->addStage($stage);
             $manager->persist($stage);

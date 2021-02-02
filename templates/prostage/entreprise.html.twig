@@ -14,11 +14,17 @@ Entreprise : {{entreprise.nom}}
     <li class="list-group-item"><strong> {{stage.titre}} </strong></li>
     <li class="list-group-item"><strong>Formation :</strong>
     {% for formation in stage.formations %}
-       {{formation.sigle}}
+       {{formation.sigle}}.
     {% endfor %}</li>
     <li class="list-group-item"><strong>Lieu :</strong> {{stage.lieu}}</li>
     <li class="list-group-item"><strong>Date d'ajout :</strong> {{stage.date | date("d/m/Y")}}</li>
-    <li class="list-group-item"><a href="{{path('prostage_stage',{id:stage.id})}}">Plus ...</a></li>
+    <li class="list-group-item">
+      {% if stage.archive == true %}
+        Stage non disponible
+      {% else %}
+        <a href="{{path('prostage_stage',{id:stage.id})}}">Plus ...</a>
+      {% endif %}
+    </li>
   </ul>
   <br>
 {% endfor %}
