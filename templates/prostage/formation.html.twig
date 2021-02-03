@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}
+Formation : {{formation.intitule}}
+{% endblock %}
+
+{% block contenuPage %}
+<strong>Sigle :</strong> {{formation.sigle}}<br>
+
+
+{% for stage in formation.stages %}
+  <ul class="list-group">
+    <li class="list-group-item"><strong> {{stage.titre}} </strong></li>
+    <li class="list-group-item"><strong>Entreprise :</strong> {{stage.entreprise.nom}}</li>
+    <li class="list-group-item"><strong>Lieu :</strong> {{stage.lieu}}</li>
+    <li class="list-group-item"><strong>Date d'ajout :</strong> {{stage.date | date("d/m/Y")}}</li>
+    <li class="list-group-item">
+      {% if stage.archive == true %}
+        Stage non disponible
+      {% else %}
+        <a href="{{path('prostage_stage',{id:stage.id})}}">Plus ...</a>
+      {% endif %}
+    </li>
+  </ul>
+  <br>
+{% endfor %}
+
+
+{% endblock %}
