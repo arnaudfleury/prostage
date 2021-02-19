@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
-use App\Form\StageType;
+use App\Form\EntrepriseType;
 
 class ProstageController extends AbstractController
 {
@@ -124,62 +124,59 @@ class ProstageController extends AbstractController
       return $this->render('prostage/formation.html.twig',['formation' => $formation,'stages' => $stages]);
     }
 
-  /**
-   * @Route("/stages/ajouter", name="prostage_ajoutStage")
-   */
-  public function ajouterStage(Request $request, EntityManagerInterface $manager)
-  {
-      //Création d'un stage vierge qui sera rempli par le formulaire
-      $stage = new Stage();
+    /**
+     * @Route("/entreprises/ajouter", name="prostage_ajoutEntreprise")
+     */
+    public function ajouterEntreprise(Request $request, EntityManagerInterface $manager)
+    {
+        //Création d'une entreprise vierge qui sera remplie par le formulaire
+        $entreprise = new Entreprise();
 
-      // Création du formulaire permettant de saisir le stage
-      $formulaireStage = $this->createForm(StageType::class, $stage);
+        // Création du formulaire permettant de saisir l'entreprise
+        $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
-      $formulaireStage->handleRequest($request);
+        $formulaireEntreprise->handleRequest($request);
 
-       if ($formulaireStage->isSubmitted() )
-       {
-          $manager = $this->getDoctrine()->getManager();
-          // Mémoriser la date d'ajout du stage
-          $stage->setDate(new \dateTime());
-          // Stage non archivé
-          $stage->setArchive(false);
-          // Enregistrer le stage en base de donnée
-          $manager->persist($stage);
-          $manager->flush();
+         if ($formulaireEntreprise->isSubmitted() )
+         {
+            $manager = $this->getDoctrine()->getManager();
 
-          // Rediriger l'utilisateur vers la page d'accueil
-          return $this->redirectToRoute('prostage_accueil');
-       }
+            // Enregistrer l'entreprise en base de données
+            $manager->persist($entreprise);
+            $manager->flush();
 
-      // Afficher la page présentant le formulaire d'ajout d'un stage
-      return $this->render('prostage/ajoutModifStage.html.twig',['vueFormulaire' => $formulaireStage->createView(), 'action'=>"ajouter"]);
-  }
+            // Rediriger l'utilisateur vers la page des entreprises
+            return $this->redirectToRoute('prostage_entreprises');
+         }
+
+        // Afficher la page présentant le formulaire d'ajout d'un entreprise
+        return $this->render('prostage/ajoutModifEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView(), 'action'=>"ajouter"]);
+    }
 
 
-  /**
-   * @Route("/stages/modifier/{id}", name="prostage_modifStage")
-   */
-  public function modifierStage(Request $request, EntityManagerInterface $manager, Stage $stage)
-  {
-      // Création du formulaire permettant de modifier un stage
-      $formulaireStage = $this->createForm(StageType::class, $stage);
+    /**
+     * @Route("/entreprises/modifier/{id}", name="prostage_modifEntreprise")
+     */
+    public function modifierEntreprise(Request $request, EntityManagerInterface $manager, Entreprise $entreprise)
+    {
+        // Création du formulaire permettant de modifier un entreprise
+        $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
-      $formulaireStage->handleRequest($request);
+        $formulaireEntreprise->handleRequest($request);
 
-       if ($formulaireStage->isSubmitted() )
-       {
-          $manager = $this->getDoctrine()->getManager();
-          // Enregistrer le stage en base de donnéelse
-          $manager->persist($stage);
-          $manager->flush();
+         if ($formulaireEntreprise->isSubmitted() )
+         {
+            $manager = $this->getDoctrine()->getManager();
+            // Enregistrer le entreprise en base de données
+            $manager->persist($entreprise);
+            $manager->flush();
 
-          // Rediriger l'utilisateur vers la page d'accueil
-          return $this->redirectToRoute('prostage_accueil');
-       }
+            // Rediriger l'utilisateur vers la page des entreprises
+            return $this->redirectToRoute('prostage_entreprises');
+         }
 
-      // Afficher la page présentant le formulaire d'ajout d'un stage
-      return $this->render('prostage/ajoutModifStage.html.twig',['vueFormulaire' => $formulaireStage->createView(), 'action'=>"modifier"]);
-  }
+        // Afficher la page présentant le formulaire de modification d'une entreprise
+        return $this->render('prostage/ajoutModifEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView(), 'action'=>"modifier"]);
+    }
 
 }
