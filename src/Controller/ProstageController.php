@@ -137,7 +137,7 @@ class ProstageController extends AbstractController
 
         $formulaireEntreprise->handleRequest($request);
 
-         if ($formulaireEntreprise->isSubmitted() )
+         if ($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
          {
             $manager = $this->getDoctrine()->getManager();
 
@@ -164,7 +164,7 @@ class ProstageController extends AbstractController
 
         $formulaireEntreprise->handleRequest($request);
 
-         if ($formulaireEntreprise->isSubmitted() )
+         if ($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
          {
             $manager = $this->getDoctrine()->getManager();
             // Enregistrer le entreprise en base de données
