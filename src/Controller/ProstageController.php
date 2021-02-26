@@ -11,6 +11,7 @@ use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 class ProstageController extends AbstractController
 {
@@ -177,6 +178,64 @@ class ProstageController extends AbstractController
 
         // Afficher la page présentant le formulaire de modification d'une entreprise
         return $this->render('prostage/ajoutModifEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView(), 'action'=>"modifier"]);
+    }
+
+    /**
+     * @Route("/stages/ajouter", name="prostage_ajoutStage")
+     */
+    public function ajouterStage(Request $request, EntityManagerInterface $manager)
+    {
+        //Création d'un stage vierge qui sera rempli par le formulaire
+        $stage = new Stage();
+
+        // Création du formulaire permettant de saisir le stage
+        $formulaireStage = $this->createForm(StageType::class, $stage);
+
+        $formulaireStage->handleRequest($request);
+
+         if ($formulaireStage->isSubmitted() )
+         {
+            $manager = $this->getDoctrine()->getManager();
+            // Mémoriser la date d'ajout du stage
+            $stage->setDate(new \dateTime());
+            // Stage non archivé
+            $stage->setArchive(false);
+            // Enregistrer le stage en base de donnée
+            $manager->persist($stage);
+            $manager->flush();
+
+            // Rediriger l'utilisateur vers la page d'accueil
+            return $this->redirectToRoute('prostage_accueil');
+         }
+
+        // Afficher la page présentant le formulaire d'ajout d'un stage
+        return $this->render('prostage/ajoutModifStage.html.twig',['vueFormulaire' => $formulaireStage->createView(), 'action'=>"ajouter"]);
+    }
+
+
+    /**
+     * @Route("/stages/modifier/{id}", name="prostage_modifStage")
+     */
+    public function modifierStage(Request $request, EntityManagerInterface $manager, Stage $stage)
+    {
+        // Création du formulaire permettant de modifier un stage
+        $formulaireStage = $this->createForm(StageType::class, $stage);
+
+        $formulaireStage->handleRequest($request);
+
+         if ($formulaireStage->isSubmitted() )
+         {
+            $manager = $this->getDoctrine()->getManager();
+            // Enregistrer le stage en base de donnéelse
+            $manager->persist($stage);
+            $manager->flush();
+
+            // Rediriger l'utilisateur vers la page d'accueil
+            return $this->redirectToRoute('prostage_accueil');
+         }
+
+        // Afficher la page présentant le formulaire d'ajout d'un stage
+        return $this->render('prostage/ajoutModifStage.html.twig',['vueFormulaire' => $formulaireStage->createView(), 'action'=>"modifier"]);
     }
 
 }

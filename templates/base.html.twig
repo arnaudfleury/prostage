@@ -29,9 +29,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="http://127.0.0.1:8000/formations">Liste des formations</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="http://127.0.0.1:8000/entreprises/ajouter">Ajouter une entreprise</a>
-                </li>
               </ul>
             </div>
           </div>
@@ -40,16 +37,10 @@
         {% block body %}
           <div class="row">
             <div class="col-md-12">
-              <div class="card bg-default">
-                <h5 class="card-header">
-                  <h1>{% block titrePage %}{% endblock %}</h1>
-                </h5>
-                <div class="card-body">
-                  <p class="card-text">
-                    {% block contenuPage %}{% endblock %}
-                  </p>
-                </div>
-              </div>
+              <h1>{% block titrePage %}{% endblock %}</h1>
+                <p>
+                  {% block contenuPage %}{% endblock %}
+                </p>
             </div>
           </div>
         {% endblock %}

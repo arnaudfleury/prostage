@@ -5,6 +5,9 @@ Bienvenue sur la liste des entreprises ! 😄
 {% endblock %}
 
 {% block contenuPage %}
+
+<a href="{{path('prostage_ajoutEntreprise')}}">Ajouter une entreprise</a>
+
 {% set debutNouvelleLigne = true %}
 
     {% for entrepriseCourante in entreprises %}

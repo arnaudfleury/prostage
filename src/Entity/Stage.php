@@ -21,26 +21,31 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     private $titre;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotBlank
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\NotBlank
      */
     private $activite;
 
     /**
      * @ORM\Column(type="string", length=300, nullable=true)
+     * @Assert\NotBlank
      */
     private $lieu;
 
     /**
      * @ORM\Column(type="string", length=3000, nullable=true)
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -51,12 +56,14 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank
      */
     private $mail;
 
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $entreprise;
 

@@ -5,6 +5,9 @@ Bienvenue sur la liste des stages ! 😄
 {% endblock %}
 
 {% block contenuPage %}
+
+<a href="{{path('prostage_ajoutStage')}}">Ajouter un stage</a>
+
 {% set debutNouvelleLigne = true %}
 
     {% for stageCourant in stages %}

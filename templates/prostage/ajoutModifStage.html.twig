@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}
+{% if action == "ajouter" %}
+Ajout d'un stage
+{% else %}
+Modifier un stage
+{% endif %}
+{% endblock %}
+
+{% block contenuPage %}
+Saisissez les caractéristiques du stage.
+
+{{ form_start(vueFormulaire) }}
+
+{{ form_row(vueFormulaire.titre, {'attr':{'placeholder':"Titre du stage"}})}}
+
+{{ form_row(vueFormulaire.activite, {'attr':{'placeholder':"Activité du stage"}})}}
+
+{{ form_row(vueFormulaire.lieu, {'attr':{'placeholder':"Lieu du stage"}})}}
+
+{{ form_row(vueFormulaire.description, {'attr':{'placeholder':"Description du stage"}})}}
+
+{{ form_row(vueFormulaire.mail, {'attr':{'placeholder':"Mail de contact pour le stage"}})}}
+
+{{ form_end(vueFormulaire) }}
+
+</br>
+<button type="submit" class="btn btn-dark">Enregistrer</button>
+
+{% endblock %}
