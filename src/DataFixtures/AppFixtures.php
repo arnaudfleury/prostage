@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
         $danny = new User();
         $danny->setPrenom("Danny");
         $danny->setNom("Kuilson");
-        $danny->setEmail("dannykuilson@yahoo.fr");
+        $danny->setEmail("danny@yahoo.fr");
         $danny->setRoles(['ROLE_USER']);
         $danny->setPassword('$2y$10$ApxYjdL90nkI2ys33co0WOu9oGC9aLIGJkYvTIiiK1zZmoy.sGRZu');
         $manager->persist($danny);
