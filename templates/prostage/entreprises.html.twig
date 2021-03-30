@@ -31,7 +31,7 @@ Bienvenue sur la liste des entreprises ! 😄
           {% endif %}
         {% endfor %}
         <p class="card-text">Stages actifs : {{nbStagesActifs}}</p>
-        <a href="{{path('prostage_entreprise',{nomEntreprise:entrepriseCourante.nom})}}">Plus ...</a>
+        <a href="{{path('prostage_entreprise_id',{nomEntreprise:entrepriseCourante.nom})}}">Plus ...</a>
       </div>
     </div>
 

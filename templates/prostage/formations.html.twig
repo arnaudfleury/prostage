@@ -27,7 +27,7 @@ Bienvenue sur la liste des formations ! 😄
           {% endif %}
         {% endfor %}
         <p class="card-text">Stages actifs : {{nbStagesActifs}}</p>
-        <a href="{{path('prostage_formation',{sigleFormation:formationCourante.sigle})}}">Plus ...</a>
+        <a href="{{path('prostage_formation_id',{sigleFormation:formationCourante.sigle})}}">Plus ...</a>
       </div>
     </div>
 

@@ -69,7 +69,7 @@ class ProstageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprise/{nomEntreprise}", name="prostage_entreprise")
+     * @Route("/entreprise/{nomEntreprise}", name="prostage_entreprise_id")
      */
     public function entreprise($nomEntreprise): Response
     {
@@ -93,7 +93,6 @@ class ProstageController extends AbstractController
     /**
      * @Route("/formations", name="prostage_formations")
      */
-/*
     public function formations(): Response
     {
         // Récupérer le repository de l'entité Formation
@@ -105,12 +104,11 @@ class ProstageController extends AbstractController
         // Envoyer les formations récupérées à la vue chargée de les afficher
         return $this->render('prostage/formations.html.twig',['formations' => $formations]);
     }
-*/
+
 
     /**
-     * @Route("/formation/{sigleFormation}", name="prostage_formation")
+     * @Route("/formations/{sigleFormation}", name="prostage_formation_id")
      */
-/*
     public function formation($sigleFormation): Response
     {
       // Récupérer le repository de l'entité Formation
@@ -128,7 +126,7 @@ class ProstageController extends AbstractController
       // Envoyer la formation récupérée à la vue chargée de l'afficher
       return $this->render('prostage/formation.html.twig',['formation' => $formation,'stages' => $stages]);
     }
-*/
+
 
     /**
      * @Route("/entreprises/ajouter", name="prostage_ajoutEntreprise")
