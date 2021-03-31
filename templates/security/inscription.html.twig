@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}Inscription sur Prostage !{% endblock %}
+
+{% block contenuPage %}
+{{ form_start(vueFormulaire) }}
+
+{{ form_row(vueFormulaire.prenom, {'attr':{'placeholder':"Saisissez votre prénom"}})}}
+
+{{ form_row(vueFormulaire.nom, {'attr':{'placeholder':"Saisissez votre nom"}})}}
+
+{{ form_row(vueFormulaire.email, {'attr':{'placeholder':"Saisissez votre email"}})}}
+
+{{ form_row(vueFormulaire.password, {'attr':{'placeholder':"Saisissez votre mot de passe"}})}}
+
+<br>
+<button type="submit" class="btn btn-dark">S'inscrire</button>
+
+{{ form_end(vueFormulaire) }}
+{% endblock %}

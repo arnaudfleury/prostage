@@ -20,7 +20,14 @@ class ProstageController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('prostage/index.html.twig');
+        // Récupérer le repository de l'entité Stage
+        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+
+        // Récupérer les stages enregistrés en BD
+        $stages = $repositoryStage->findAllJoinEntrepriseAndFormation();
+
+        // Envoyer les stages récupérés à la vue chargée de les afficher
+        return $this->render('prostage/index.html.twig',['stages'=>$stages]);
     }
 
     /**

@@ -8,15 +8,35 @@ Bienvenue sur la page d'accueil de Prostage ! 😄
 <p>
   Vous trouverez ci-dessous les derniers stages publiés sur Prostage.
 </p>
-<ul>
-  <li>
-    <a href="{{path('prostage_stage',{id:166})}}">Stage numéro 166</a>
-  </li>
-  <li>
-    <a href="{{path('prostage_stage',{id:4})}}">Stage numéro 4</a>
-  </li>
-  <li>
-    <a href="{{path('prostage_stage',{id:72})}}">Stage numéro 72</a>
-  </li>
-</ul>
+{% set debutNouvelleLigne = true %}
+
+    {% for stageCourant in stages %}
+
+      {# Si on est en début de ligne, on crée un nouveau composant card-deck #}
+      {% if debutNouvelleLigne == true %}
+        <div class="card-deck">
+        {% set debutNouvelleLigne = false %}
+      {% endif %}
+
+      {% if stageCourant.archive == false %}
+        {#Afficher une carte pour le stage courant #}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{stageCourant.titre}}</h5>
+            <p class="card-text">Entreprise : {{stageCourant.entreprise.nom}}</p>
+            <p class="card-text">Formation :
+              {% for formation in stageCourant.formations %}
+                 {{formation.sigle}}.
+              {% endfor %}
+            </p>
+            <p class="card-text">Lieu : {{stageCourant.lieu}}</p>
+            <p class="card-text">
+              <small class="text-muted">Date d'ajout : {{stageCourant.date | date("d/m/Y")}}</small>
+            </p>
+            <a href="{{path('prostage_stage',{id:stageCourant.id})}}">Plus ...</a>
+          </div>
+        </div>
+      {% endif %}
+
+    {% endfor %}
 {% endblock %}

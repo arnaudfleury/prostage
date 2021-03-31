@@ -15,7 +15,7 @@
       <div class="container-fluid">
         {% block menu %}
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
               <ul class="nav">
                 <li class="nav-item">
                   <a class="nav-link" href="http://127.0.0.1:8000/">Accueil</a>
@@ -29,9 +29,45 @@
                 <li class="nav-item">
                   <a class="nav-link" href="http://127.0.0.1:8000/formations">Liste des formations</a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                  <a class="nav-link" href="http://127.0.0.1:8000/formation">Gérer les formations</a>
+                  <a class="nav-link" href="{{path('formation_index')}}">
+                    Gérer les formations
+                    </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{path('formation_index')}}">
+                    Gérer le contenu
+                    </a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+            <div class="col-md-2">
+              <ul class="nav">
+
+                 {% if is_granted('ROLE_USER') %}
+                 <li class="nav-item">
+                   <a class="nav-link" href="{{path('app_logout')}}">
+                     {{ app.user.prenom }} {{ app.user.nom }}
+                     <i class="icon-user"></i>
+                     Déconnexion
+                     </a>
+                 </li>
+                 {% else %}
+                 {# Fonctionnalités pour l'utilsateur NON authentifié #}
+                 <li class="nav-item active">
+                   <a class="nav-link" href="{{path('app_inscription')}}">
+                     Inscription
+                   </a>
+                 </li>
+                 <li class="nav-item active">
+                   <a class="nav-link" href="{{path('app_login')}}">
+                     <i class="icon-user"></i>
+                     Connexion
+                     </a>
+                 </li>
+                 {% endif %}
               </ul>
             </div>
           </div>

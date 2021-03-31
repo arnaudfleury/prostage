@@ -13,7 +13,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        // Création d'un utilisateur administrateur et d'un utilisateur authentifié
+        // Création d'un utilisateur administrateur et d'un utilisateur authentifié (+ utilisateur ADMIN Patrick avec le même mot de passe)
         $arnaud = new User();
         $arnaud->setPrenom("Arnaud");
         $arnaud->setNom("Fleury");
@@ -29,6 +29,14 @@ class AppFixtures extends Fixture
         $danny->setRoles(['ROLE_USER']);
         $danny->setPassword('$2y$10$ApxYjdL90nkI2ys33co0WOu9oGC9aLIGJkYvTIiiK1zZmoy.sGRZu');
         $manager->persist($danny);
+
+        $patrick = new User();
+        $patrick->setPrenom("Patrick");
+        $patrick->setNom("Etcheverry");
+        $patrick->setEmail("patrick@free.fr");
+        $patrick->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $patrick->setPassword('$2y$10$qDhA9hKYFXAHIqRUEGNlB..argVgjrDvxysv3BgrTVJWzM/tOBIjy');
+        $manager->persist($patrick);
 
         // Création d'un générateur de données Faker
         $faker = \Faker\Factory::create('fr_FR');

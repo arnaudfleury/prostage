@@ -18,6 +18,8 @@ Stage n°{{stage.id}} - {{stage.titre}}
   <li class="list-group-item"><strong>Mail :</strong> {{stage.mail}}</li>
   <li class="list-group-item"><strong>Date d'ajout :</strong> {{stage.date | date("d/m/Y")}}</li>
 
+  {% if is_granted('ROLE_USER') %}
   <a href="{{path('prostage_modifStage',{id:stage.id})}}">Modifier</a>
+  {% endif %}
 </ul>
 {% endblock %}

@@ -7,7 +7,9 @@ Entreprise : {{entreprise.nom}}
 {% block contenuPage %}
 <strong>Adresse :</strong> {{entreprise.adresse}}<br>
 <strong>Site web :</strong> {{entreprise.siteWeb}}<br>
+{% if is_granted('ROLE_ADMIN') %}
 <a href="{{path('prostage_modifEntreprise',{id:entreprise.id})}}">Modifier</a>
+{% endif %}
 
 
 {% for stage in stages %}

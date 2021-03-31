@@ -6,7 +6,9 @@ Bienvenue sur la liste des stages ! 😄
 
 {% block contenuPage %}
 
+{% if is_granted('ROLE_USER') %}
 <a href="{{path('prostage_ajoutStage')}}">Ajouter un stage</a>
+{% endif %}
 
 {% set debutNouvelleLigne = true %}
 

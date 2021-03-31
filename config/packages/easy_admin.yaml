@@ -1,0 +1,9 @@
+easy_admin:
+    entities:
+        # List the entity class name you want to manage
+        - App\Entity\Stage
+        - App\Entity\Entreprise
+        - App\Entity\Formation
+        - App\Entity\User
+    design:
+      brand_color: '#09b00e'
